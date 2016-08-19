@@ -17,6 +17,7 @@
 -(NSURL *)logDirectory;
 -(NSString *)logPrint;
 -(NSData *)logData;
+-(void)deleteLog;
 
 @property (nonatomic) BOOL degbugger;
 

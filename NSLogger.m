@@ -83,7 +83,17 @@
 
 -(NSData *)logData {
     return [[NSFileManager defaultManager] contentsAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME]];
-    
+}
+
+
+- (void)deleteLog {
+    NSError *error;
+    if ([[NSFileManager defaultManager] isDeletableFileAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME]]) {
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME] error:&error];
+        if (!success) {
+            NSLog(@"Error removing file at path: %@", error.localizedDescription);
+        }
+    }
 }
 
 
