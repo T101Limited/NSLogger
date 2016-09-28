@@ -30,7 +30,7 @@
     
 }
 
--(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error {
+-(void)log:(NSString *)title properties:(NSDictionary *)properties {
     NSMutableString *appendContents = [[NSMutableString alloc] init];
     if (![[NSFileManager defaultManager] fileExistsAtPath:LOGGER_DIRECTORY]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:LOGGER_DIRECTORY withIntermediateDirectories:false attributes:nil error:nil];
@@ -42,12 +42,12 @@
     }
     
     [appendContents appendString:[self logPrint]];
-    [appendContents appendString:[NSString stringWithFormat:@"\n\n****************************** %@ ******************************\n" ,[self formatDate]]];
+    [appendContents appendString:[NSString stringWithFormat:@"\n****************************** %@ ******************************\n" ,[self formatDate]]];
     
     NSAssert(title != nil, @"Event title cannot be nill");
     NSAssert(title.length > 2, @"Event title needs to be longer that 2 characters");
 
-    [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nERROR: %@\nPROPERTIES ¬ \n" ,error?@"TRUE":@"FALSE", title]];
+    [appendContents appendString:[NSString stringWithFormat:@"EVENT: \"%@\"\nPROPERTIES ¬ \n" , title]];
     
     for (int i = 0; i < [[properties allKeys] count]; i++) {
         NSAssert([properties objectForKey:[[properties allKeys] objectAtIndex:i]] != [NSNull null], @"Event property cannot be null");

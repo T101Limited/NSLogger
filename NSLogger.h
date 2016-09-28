@@ -12,7 +12,7 @@
 @interface NSLogger : NSObject {
 }
 
--(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error;
+-(void)log:(NSString *)title properties:(NSDictionary *)properties;
 
 -(NSURL *)logDirectory;
 -(NSString *)logPrint;
