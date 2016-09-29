@@ -93,6 +93,11 @@
         if (!success) {
             NSLog(@"Error removing file at path: %@", error.localizedDescription);
         }
+        
+        success = [[NSFileManager defaultManager] removeItemAtPath:LOGGER_DIRECTORY error:&error];
+        if (!success) {
+            NSLog(@"Error removing file at path: %@", error.localizedDescription);
+        }
     }
 }
 
